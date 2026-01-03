@@ -17,6 +17,7 @@ export default function App() {
           <Route path="/publishers" element={<PublishersList />} />
           <Route path="/books" element={<BooksList />} />
           <Route path="/books/new" element={<BooksForm />} />
+          <Route path="/books/edit/:id" element={<BooksForm />} />
         </Routes>
       </div>
       <Footer />
