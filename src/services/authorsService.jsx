@@ -1,8 +1,16 @@
-import axios from 'axios';
-
-const API_URL = 'http://localhost:5234/api';
+import AxiosConfig from '../axiosConfig';
 
 export const getAuthors = async () => {
-  const response = await axios.get(`${API_URL}/authors`);
+  const response = await AxiosConfig.get('/Authors');
   return response.data;
+};
+
+export const fetchAuthorsPage = async (page) => {
+  try {
+    const response = await AxiosConfig.get('/Authors/paging?page=' + page);
+    return response.data;
+  }
+  catch (error){
+    throw new Error('Failed to fetch authors page');
+  }
 };

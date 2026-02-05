@@ -6,6 +6,7 @@ import Welcome from './components/Welcome';
 import PublishersList from './pages/PublishersList';
 import BooksList from './pages/BooksList';
 import BooksForm from './pages/BooksForm';
+import AuthorsPagination from './pages/AuthorsPagination';
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
           <Route path="/books" element={<BooksList />} />
           <Route path="/books/new" element={<BooksForm />} />
           <Route path="/books/edit/:id" element={<BooksForm />} />
+          <Route path="/authors/pagination" element={<AuthorsPagination />} />
         </Routes>
       </div>
       <Footer />
