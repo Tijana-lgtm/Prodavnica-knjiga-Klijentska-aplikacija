@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 export default function BooksList() {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [role, setRole] = useState(null);
   const navigate = useNavigate();
 
   const loadBooks = async () => {
@@ -20,6 +21,15 @@ export default function BooksList() {
 
   useEffect(() => {
     loadBooks();
+    const token = localStorage.getItem('token');
+    if (token) {
+      try {
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        setRole(payload.role);
+      } catch (error) {
+        console.error('Nevalidan token');
+      }
+    }
   }, []);
 
   const handleDelete = async (id) => {
@@ -52,7 +62,7 @@ export default function BooksList() {
             <th>Published Date</th>
             <th>Author</th>
             <th>Publisher</th>
-            <th>Actions</th>
+            {role === "Editor" && <th>Actions</th>}
           </tr>
         </thead>
         <tbody>
@@ -63,12 +73,14 @@ export default function BooksList() {
               <td>{book.isbn}</td>
               <td>{book.pageCount}</td>
               <td>{new Date(book.publishedDate).toLocaleDateString('sr-RS')}</td>
-              <td>{book.author.fullName}</td>
-              <td>{book.publisher.name}</td>
-              <td>
-                <button onClick={() => handleEdit(book.id)}>Edit</button>
-                <button onClick={() => handleDelete(book.id)}>Delete</button>
-              </td>
+              <td>{book.authorFullName}</td>
+              <td>{book.publisherName}</td>
+              {role === "Editor" && (
+                <td>
+                  <button onClick={() => handleEdit(book.id)}>Edit</button>
+                  <button onClick={() => handleDelete(book.id)}>Delete</button>
+                </td>
+              )}
             </tr>
           ))}
         </tbody>
