@@ -43,6 +43,13 @@ const Login = () => {
     }
   };
 
+  const handleGoogleLogin = () => {
+  window.open(
+    "http://localhost:5234/api/Auth/google-login",
+    "width=500,height=600"
+    );
+  };
+
   return (
     <form onSubmit={handleLogin} style={{ maxWidth: '300px', margin: '0 auto' }}>
       <h2>Prijava</h2>
@@ -56,6 +63,7 @@ const Login = () => {
           value={password} onChange={(e) => setPassword(e.target.value)} />
       </div>
       <button type="submit">Prijavi se</button>
+      <button onClick={handleGoogleLogin}>Login with Google</button>
     </form>
   );
 };

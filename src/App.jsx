@@ -9,7 +9,7 @@ import BooksForm from './pages/BooksForm';
 import AuthorsPagination from './pages/AuthorsPagination';
 import UserContext from './userContext';
 import Login from './pages/Login';
-
+import GoogleCallback from './pages/GoogleCallback';
 
 export default function App() {
 
@@ -22,6 +22,7 @@ export default function App() {
       <div style={{padding: '20px'}}>
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/google-callback" element={<GoogleCallback />} />
           <Route path="/" element={<Welcome />} />
           <Route path="/publishers" element={<PublishersList />} />
           <Route path="/books" element={<BooksList />} />
