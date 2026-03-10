@@ -10,10 +10,13 @@ import AuthorsPagination from './pages/AuthorsPagination';
 import UserContext from './userContext';
 import Login from './pages/Login';
 import GoogleCallback from './pages/GoogleCallback';
+import SearchVolumes from './pages/SearchVolumes.jsx';
+
 
 export default function App() {
 
   const [user, setUser] = useState(null);
+  
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
@@ -29,10 +32,12 @@ export default function App() {
           <Route path="/books/new" element={<BooksForm />} />
           <Route path="/books/edit/:id" element={<BooksForm />} />
           <Route path="/authors/pagination" element={<AuthorsPagination />} />
+          <Route path="/volumes/search" element={<SearchVolumes />} />
         </Routes>
       </div>
       <Footer />
     </BrowserRouter>
     </UserContext.Provider>
+    
   );
 }
